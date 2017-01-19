@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>绑定和事件状态</title>
+    <link rel="stylesheet" href="css/Admin-all_1.css">
+    <link rel="stylesheet" href="css/Admin-all_2.css">
+    <link rel="stylesheet" href="css/Admin-all_3.css">
+    <script type="text/javascript" src="js/ext-all.js"></script>
+    <script type="text/javascript" src="js/ext-all-debug.js"></script>
+</head>
+
+<body>
+    <script>
+    Ext.onReady(function() {
+        Ext.create('Ext.panel.Panel', {
+            renderTo: Ext.getBody(),
+            title: 'Sign Up From',
+            viewModel: {
+                type: 'test'
+            },
+            items: [{
+                xtype: 'checkbox',
+                boxLabel: 'Is Admin',
+                reference: 'isAdmin'
+            }, {
+                xtype: 'textfield',
+                fieldLabel: 'Admin Key',
+                bind: {
+                    disabled: '{!isAdmin.checked}'
+                }
+            }],
+            width:400
+        });
+    })
+    </script>
+</body>
+
+</html>

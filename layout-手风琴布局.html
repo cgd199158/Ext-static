@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/Admin-all_1.css">
+    <link rel="stylesheet" href="css/Admin-all_2.css">
+    <link rel="stylesheet" href="css/Admin-all_3.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <script type="text/javascript" src="js/ext-all.js"></script>
+    <script type="text/javascript" src="js/ext-all-debug.js"></script>
+</head>
+
+<body>
+    <script>
+    Ext.onReady(function() {
+        Ext.create('Ext.panel.Panel', {
+            title: 'Absolute Panel',
+            width: 300,
+            height: 300,
+            html: 'hello world',
+            style: 'border:1px solid gray',
+            //手风琴布局
+            layout: {
+                type: 'accordion',
+                titleCollapse: false,//True允许通过单击标题栏的任意位置来展开/折叠面板,false只允许单击切换工具按钮是展开/折叠,默认为true
+                animate: true,//动画效果,默认为true
+                activeOnTop: false,//true将交换每个面板的位置,以便它成为容器中的第一个项目,false是保持面板呈现的顺序不动,默认false
+                multi: false//设置为true时可以多个panel同时打开
+            },
+            items: [{
+                title: 'Panel 1',
+                html: 'Panel 1 content',
+            },{
+                title: 'Panel 2',
+                html: 'Panel 2 content'
+            },{
+                title: 'Panel 3',
+                html: 'Panel 3 content'
+            }],
+            
+            renderTo: Ext.getBody()
+        })
+    })
+    </script>
+</body>
+
+</html>

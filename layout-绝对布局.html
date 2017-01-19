@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/Admin-all_1.css">
+    <link rel="stylesheet" href="css/Admin-all_2.css">
+    <link rel="stylesheet" href="css/Admin-all_3.css">
+    <script type="text/javascript" src="js/ext-all.js"></script>
+    <script type="text/javascript" src="js/ext-all-debug.js"></script>
+</head>
+
+<body>
+    <script>
+    Ext.onReady(function() {
+        Ext.create('Ext.panel.Panel', {
+            title: 'Absolute Panel',
+            width: 300,
+            height: 300,
+            html: 'hello world',
+            style: 'border:1px solid gray',
+            //绝对布局
+            layout: {
+                type: 'absolute'
+            },
+            items: [{
+                x: 10,
+                y: 10,
+                xtype: 'button',
+                text: 'button1 x:10 y:10'
+            }, {
+                x: 10,
+                y: 50,
+                xtype: 'button',
+                text: 'button2 x:10 y:50'
+            }, {
+                x: 50,
+                y: 100,
+                xtype: 'button',
+                text: 'button x:50 y:100',
+                anchor: '90%'
+            }],
+            renderTo: Ext.getBody()
+        })
+    })
+    </script>
+</body>
+
+</html>

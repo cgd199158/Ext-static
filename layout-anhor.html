@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/Admin-all_1.css">
+    <link rel="stylesheet" href="css/Admin-all_2.css">
+    <link rel="stylesheet" href="css/Admin-all_3.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <script type="text/javascript" src="js/ext-all.js"></script>
+    <script type="text/javascript" src="js/ext-all-debug.js"></script>
+</head>
+
+<body>
+    <script>
+    Ext.onReady(function() {  
+       Ext.create('Ext.Window',{
+		title:'Anchor layout',
+		width:400,
+		height:400,
+		layout:'anchor',
+		plain: true,
+		items:[
+			Ext.create('Ext.panel.Panel',{
+				title:'panel1',
+				height:100,
+				anchor:'-50',
+				html:'高度等于100，宽度= 容器宽度-50'
+			}),
+			Ext.create('Ext.panel.Panel',{
+				title:'panel2',
+				height:100,
+				anchor:'50%',
+				html:'高度等于100，宽度=容器的宽度*50%'
+			}),
+			Ext.create('Ext.panel.Panel',{
+				title:'panel3',
+				anchor:'-200,-10',
+				html:'高度等于容器高度-10,宽度等于容器宽度-200'
+			})
+		]
+		
+	}).show(); 
+    }); 
+    </script>
+</body>
+
+</html>

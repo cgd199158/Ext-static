@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/Admin-all_1.css">
+    <link rel="stylesheet" href="css/Admin-all_2.css">
+    <link rel="stylesheet" href="css/Admin-all_3.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <script type="text/javascript" src="js/ext-all.js"></script>
+    <script type="text/javascript" src="js/ext-all-debug.js"></script>
+</head>
+
+<body>
+    <script>
+    Ext.onReady(function() {
+        Ext.create('Ext.panel.Panel', {
+            title: 'AnchorLayout Panel',
+            width: 500,
+            height: 400,
+            layout: 'anchor',
+            items:[
+                {
+                    xtype: 'panel',
+                    title: '75% Width and 20% Height',
+                    anchor: '75% 20%'
+                },
+                {
+                    xtype: 'panel',
+                    title: 'Offset -300 Width & -200 Height',
+                    anchor: '-300 -200'
+                },
+                {
+                    xtype: 'panel',
+                    title: 'Mixed Offset and Percent',
+                    anchor: '-250 20%'
+                },
+            ],
+            renderTo: Ext.getBody()
+        })
+    })
+    </script>
+</body>
+
+</html>

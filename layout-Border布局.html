@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/Admin-all_1.css">
+    <link rel="stylesheet" href="css/Admin-all_2.css">
+    <link rel="stylesheet" href="css/Admin-all_3.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <script type="text/javascript" src="js/ext-all.js"></script>
+    <script type="text/javascript" src="js/ext-all-debug.js"></script>
+</head>
+
+<body>
+    <script>
+    Ext.onReady(function() {
+        Ext.create('Ext.container.Container', {
+            width: 500,
+            height: 300,
+            //title: 'Border Layout',
+            layout: 'border',
+            style: 'border:1px solid gray;background:red;',
+            items: [{
+                title: 'South Region is resizable',
+                region: 'south', // north south east west center定位 
+                xtype: 'panel',
+                height: 100,
+                split: true, // panel能够改变大小  
+                margin: '0 5 5 5',
+                style: 'border:1px solid gray',
+            }, {
+                // xtype: 'panel' implied by default  
+                title: 'West Region is collapsible',
+                region: 'west',
+                xtype: 'panel',
+                margin: '5 0 0 5',
+                width: 200,
+                collapsible: true, // panle能否收缩
+                id: 'west-region-container',
+                style: 'border:1px solid gray',
+                layout: 'fit'
+            }, {
+                title: 'Center Region',
+                region: 'center', // center region is required, no width/height specified  
+                xtype: 'panel',
+                layout: 'fit',
+                style: 'border:1px solid gray',
+                margin: '5 5 0 0'
+            }, {
+                title: 'North Region',  
+                region: 'north',       
+                xtype: 'panel',  
+                height: 100,
+                style: 'border:1px solid gray',  
+                margin: '5 5 0' 
+            }],
+            renderTo: Ext.getBody()
+        })
+    })
+    </script>
+</body>
+
+</html>

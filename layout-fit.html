@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/Admin-all_1.css">
+    <link rel="stylesheet" href="css/Admin-all_2.css">
+    <link rel="stylesheet" href="css/Admin-all_3.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <script type="text/javascript" src="js/ext-all.js"></script>
+    <script type="text/javascript" src="js/ext-all-debug.js"></script>
+</head>
+
+<body>
+    <script>
+    Ext.onReady(function() {
+        Ext.create('Ext.container.Container', {
+            width: 500,
+            height: 100,
+            layout: 'fit',
+            style: 'border:1px solid gray;background:red;',
+            items: [
+                {title:'子元素1'},  
+                {title:'子元素2'},  
+                {title:'子元素3'},  
+                {title:'子元素4'},  
+                {title:'子元素5'} 
+            ],
+            renderTo: Ext.getBody()
+        })
+    })
+    </script>
+</body>
+
+</html>

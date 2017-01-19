@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/Admin-all_1.css">
+    <link rel="stylesheet" href="css/Admin-all_2.css">
+    <link rel="stylesheet" href="css/Admin-all_3.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <script type="text/javascript" src="js/ext-all.js"></script>
+    <script type="text/javascript" src="js/ext-all-debug.js"></script>
+</head>
+
+<body>
+    <script>
+    Ext.onReady(function() {
+        Ext.create('Ext.container.Container', {
+            width: 400,
+            height: 300,
+            layout: 'column',
+            style: 'border:1px solid gray;background:red;',
+            items: [
+                {
+                    title: 'width=50%',
+                    columnWidth:0.5,
+                    html:"width=(容器宽度-容器内其它组件固定宽度)*50%",
+                    height:100
+                },
+                {
+                    title: 'width=250px',
+                    width: 200,
+                    height: 100,
+                    style: 'margin:0 0 0 5px',
+                    html: "固定宽度为250px"
+                }
+            ],
+            renderTo: Ext.getBody()
+        })
+    })
+    </script>
+</body>
+
+</html>

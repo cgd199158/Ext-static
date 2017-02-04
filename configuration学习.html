@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/Admin-all_1.css">
+    <link rel="stylesheet" href="css/Admin-all_2.css">
+    <link rel="stylesheet" href="css/Admin-all_3.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <script type="text/javascript" src="js/ext-all.js"></script>
+    <script type="text/javascript" src="js/ext-all-debug.js"></script>
+</head>
+
+<body>
+    <script>
+    Ext.onReady(function() {
+        Ext.define('My.own.Window', {
+            extend: 'Ext.Component',
+            /** @readonly */
+            isWindow: true,
+
+            config: {
+                title: 'Title Here',
+
+                bottomBar: {
+                    height: 50,
+                    resizable: false
+                }
+            },
+
+            applyTitle: function(title) {
+                if (!Ext.isString(title) || title.length === 0) {
+                    alert('Error: Title must be a valid non-empty string');
+                } else {
+                    return title;
+                }
+            },
+
+            applyBottomBar: function(bottomBar) {
+                if (bottomBar) {
+                    if (!this.bottomBar) {
+                        //如果当前没有设置bottomBar配置，则通过Ext.create创建一个自定义的子类
+                        //这样它有可以从Ext.Base中继承setConfig, 也可以获得子配置
+                        //即bottomBar保存的是一个Ext的对像
+                        return Ext.create('My.own.WindowBottomBar', bottomBar);
+                    } else {
+                        //查看Ext.Base中的setConfig, 因为当前的bottomBar为一个Ext Base的子类的对像
+                        //所以可以直接调用它的setConfig, 改变它的值，而不用返回一个新值
+                        this.bottomBar.setConfig(bottomBar);
+                    }
+                }
+            }
+        });
+
+        /** A child component to complete the example. */
+        Ext.define('My.own.WindowBottomBar', {
+            config: {
+                height: 10,
+                resizable: true
+            }
+        });
+
+        var myWindow = Ext.create('My.own.Window', {
+            title: 'Hello World',
+            bottomBar: {
+                height: 60
+            }
+        });
+
+        alert(myWindow.getTitle());
+
+        myWindow.setTitle('New Title');
+
+        alert(myWindow.getTitle());
+
+        myWindow.setTitle(null);
+
+        alert(myWindow.getTitle());
+
+        myWindow.setBottomBar({
+            height: 100
+        });
+
+        alert(myWindow.getBottomBar().getHeight());
+
+        /*
+        静态的成员可以定义在statics config中
+         */
+
+        Ext.define('Computer', {
+            statics: {
+                instanceCount: 0,
+                factory: function(brand) {
+                    // 'this' in static methods refer to the class itself
+                    return new this({
+                        brand: brand
+                    });
+                }
+            },
+
+            config: {
+                brand: null
+            }
+        });
+
+        var dellComputer = Computer.factory('Dell');
+        var appleComputer = Computer.factory('Mac');
+
+        alert(appleComputer.getBrand());
+
+        /**
+         * 单例类
+         */
+        Ext.define('Logger',{
+            singleton: true,
+            log: function(msg){
+                console.log(msg);
+            }
+        })
+
+        //可以直接使用这个类，而不需要Ext.create
+        Logger.log('cgd');
+
+        /**
+         * Ext.define创建的类，可通过getClass返回对象的类名，如果不是则返回为空
+         */
+        var test = new Ext.Button();
+        console.log(Ext.getClass(test));
+
+        console.log(Ext.getClassName(Ext.Button));
+    })
+    </script>
+</body>
+
+</html>

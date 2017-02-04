@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/Admin-all_1.css">
+    <link rel="stylesheet" href="css/Admin-all_2.css">
+    <link rel="stylesheet" href="css/Admin-all_3.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <script type="text/javascript" src="js/ext-all.js"></script>
+    <script type="text/javascript" src="js/ext-all-debug.js"></script>
+</head>
+
+<body>
+    <script>
+    /**
+     * 将每个职责，定义成类
+     */
+    //负责接听电话
+    Ext.define('Myapp.sample.tasks.attendPhone', {
+        answerPhone: function() {
+            console.log(this.name + ' is answering the phone');
+        }
+    });
+    //负责接待客户
+    Ext.define('Myapp.sample.tasks.attendClient', {
+        attendClient: function(clientName) {
+            console.log(this.name + ' is attending client: ' + clientName);
+        }
+    });
+    //负责会议
+    Ext.define('Myapp.sample.tasks.attendMeeting', {
+        attendMeeting: function(person) {
+            console.log(this.name + ' is attending a meeting with ' +
+                person);
+        }
+    });
+    //管理公司
+    Ext.define('Myapp.sample.tasks.superviseEmployees', {
+        superviseEmployee: function(supervisor, employee) {
+            console.log(supervisor.name + ' is supervising : ' +
+                employee.name + ' ' + employee.lastName);
+        }
+    });
+    /**
+     * 基础类
+     */
+    Ext.define('Myapp.sample.Employee', {
+        name: 'Unknown',
+        lastName: 'Unknown',
+        age: 0,
+        constructor: function(config) {
+            Ext.apply(this, config || {});
+            console.log('class created – fullname:' + this.name + ' ' +
+                this.lastName);
+        },
+        checkAge: function() {
+            console.log('Age of ' + this.name + ' ' + this.lastName + ' is:' + this.age);
+        },
+        work: function(task) {
+            console.log(this.name + ' is working on: ' + task);
+        }
+    });
+    /**
+     * 秘书类
+     */
+    Ext.define('Myapp.sample.Secretary', {
+        extend: 'Myapp.sample.Employee',
+        mixins: {
+            answerPhone: 'Myapp.sample.tasks.attendPhone'
+        },
+        constructor: function(config) {
+            Ext.apply(this, config || {});
+            console.log('Secretary class created – fullname:' + this.name + ' ' + this.lastName);
+        }
+    });
+    /**
+     * 会计类
+     */
+    Ext.define('Myapp.sample.Accountant', {
+        extend: 'Myapp.sample.Employee',
+        mixins: {
+            attendClient: 'Myapp.sample.tasks.attendClient',
+            attendMeeting: 'Myapp.sample.tasks.attendMeeting'
+        },
+        constructor: function(config) {
+            Ext.apply(this, config || {});
+            console.log('Accountant class created – fullname:' + this.name + ' ' + this.lastName);
+        }
+    });
+    /**
+     * 经理类
+     */
+    Ext.define('Myapp.sample.Manager', {
+        extend: 'Myapp.sample.Employee',
+        mixins: {
+            attendClient: 'Myapp.sample.tasks.attendClient',
+            attendMeeting: 'Myapp.sample.tasks.attendMeeting',
+            supervisePersons: 'Myapp.sample.tasks.superviseEmployees'
+        },
+        constructor: function(config) {
+            Ext.apply(this, config || {}); //this.name= config.name;
+            console.log('Manager class created – fullname:' + this.name +
+                ' ' + this.lastName);
+        },
+        supervise: function(employee) {
+            console.log(this.name + ' starts supervision ');
+            this.mixins.supervisePersons.superviseEmployee(this,
+                employee);
+            console.log(this.name + ' finished supervision ');
+        }
+    });
+
+
+    //类的mixing使用
+    var patricia = Ext.create('Myapp.sample.Secretary', {
+        name: 'Patricia',
+        lastName: 'Diaz',
+        age: 21
+    }); //创建一个秘书实例
+
+    patricia.work('负责拨打电话');
+    patricia.answerPhone();
+
+    var peter = Ext.create('Myapp.sample.Accountant', {
+        name: 'Peter',
+        lastName: 'Smith',
+        Age: 33
+    });
+
+    peter.work('检查财政账单');
+    peter.attendClient('ACME Crop');
+    peter.attendMeeting('Patricia');
+    var robert = Ext.create('Myapp.sample.Manager', {
+        name: 'Robert',
+        lastName: 'Smith',
+        age: 34
+    });
+    robert.work('Administration of the office');
+    robert.attendClient('Iron Tubes of America');
+    robert.attendMeeting('Patricia & Peter');
+    robert.supervise(patricia);
+    robert.supervise(peter);
+    </script>
+</body>
+
+</html>

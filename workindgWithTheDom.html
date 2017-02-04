@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/Admin-all_1.css">
+    <link rel="stylesheet" href="css/Admin-all_2.css">
+    <link rel="stylesheet" href="css/Admin-all_3.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <script type="text/javascript" src="js/ext-all.js"></script>
+    <script type="text/javascript" src="js/ext-all-debug.js"></script>
+</head>
+
+<body style="padding: 10px;">
+    <div id="main"></div>
+    <div id="second"></div>
+    <script>
+    Ext.onReady(function() {
+        var mymainDiv = Ext.get('main');
+        var mysecondDiv = Ext.dom.Element.get('second');
+        //设置dom样式
+        mymainDiv.setStyle({
+            width: "100px",
+            height: "100px",
+            border: "2px solid #444",
+            margin: "80px autp",
+            backgroundColor: "#ccc"
+        });
+        //为dom动态添加class
+        mysecondDiv.addCls("x-testing x-box-component");
+        //为dom动态删除class
+        mysecondDiv.removeCls("x-testing");
+        //为dom添加动画
+        //
+        var opt = {
+            duration: 1000,
+            easing: 'elasticIn',
+            callback: this.foo,
+            scope: this
+        };
+        mymainDiv.fadeOut()
+            .fadeIn({
+                duration: 3000
+            }).setWidth(200, opt); //setWidth自定义动画
+        //no animation
+        div.setWidth(200);
+        // default animation
+        /*
+        Option    Default   Description
+        --------- --------  ---------------------------------------------
+        duration  350       The duration of the animation in milliseconds
+        easing    easeOut   The easing method
+        callback  none      A function to execute when the anim completes
+        scope     this      The scope (this) of the callback function
+        */
+        div.setWidth(200, true);
+
+        /**
+         * Ext.dom.Element的实例可以通过css选择器选择子孙节点,有三个方法
+         * 这三个方法都可以接收有效的CSS选择器，应为它们的底层都是JavaScript的
+         * querySelectorAll方法, 它们之前的不同在于，返回的类型 
+         * query
+         * selectNode
+         * select
+         */
+
+        //query返回一个HTMLElement实例的数组
+        element.query('.foo');
+
+        //query可通过asDom参数为false，返回的类型为Ext.dom。Element
+        element.query('.foo', false);
+
+        //selectNode返回第一个匹配的HTMLElement
+        element.selectNode('.foo');
+
+        //selectNode返回Ext.dom.Element
+        element.selectNode('.foo', false);
+
+        //select方法用于返回类型为CompositeElementLite 或者CompositeElement. 它们都是元素的集合类型，可以将Ext.dom.Element的方法应用于组中。两者的不同在于CompositeElementLite是一个HTMLElement的实例，而CompositeElement是一个Ext.dom.Element类型集合。
+        
+        //CompositeElementLite
+        element.select('.foo');
+        
+        //CompositeElement
+        element.select('.foo', true);
+
+        
+    });
+    </script>
+</body>
+
+</html>
